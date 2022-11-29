@@ -8,8 +8,6 @@ export class Volunteer {
   photo?: string;
   mentorCoins?: number;
   active?: boolean;
-  createdAt: Date;
-  updatedAt: Date;
 
   constructor(
     name: string,
@@ -21,8 +19,6 @@ export class Volunteer {
     active?: boolean,
   ) {
     this.id = randomUUID();
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
     this.name = name;
     this.email = email;
     this.role = role;

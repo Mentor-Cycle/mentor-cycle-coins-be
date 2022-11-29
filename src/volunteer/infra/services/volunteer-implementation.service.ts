@@ -1,17 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateVolunteerDto } from 'src/volunteer/dto/create-volunteer.dto';
 import { UpdateVolunteerDto } from 'src/volunteer/dto/update-volunteer.dto';
 import { Volunteer } from 'src/volunteer/entities/volunteer.entity';
+import {
+  VOLUNTEER_REPOSITORY,
+  VolunteerRepository,
+} from 'src/volunteer/repository/volunteer.repository';
 import { VolunteerService } from 'src/volunteer/services/volunteer.service';
 
 @Injectable()
 export class VolunteerServiceImplmenetation implements VolunteerService {
+  constructor(
+    @Inject(VOLUNTEER_REPOSITORY)
+    private readonly volunteerRepository: VolunteerRepository,
+  ) {}
   create(createVolunteerDto: CreateVolunteerDto): Promise<Volunteer> {
-    const volunteer = new Volunteer(
-      createVolunteerDto.name,
-      createVolunteerDto.email,
-    );
-    return Promise.resolve(volunteer);
+    return this.volunteerRepository.create(createVolunteerDto);
   }
 
   findAll(): Promise<Volunteer[]> {
