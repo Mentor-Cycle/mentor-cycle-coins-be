@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { VolunteerService, VOLUNTEER_SERVICE } from './volunteer.service';
+import { VOLUNTEER_SERVICE } from './interfaces/volunteer-service.interface';
+import { VolunteerService } from './volunteer.service';
 
 describe('VolunteerService', () => {
   let service: VolunteerService;
