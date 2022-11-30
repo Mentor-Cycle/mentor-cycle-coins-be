@@ -1,11 +1,11 @@
-import { VolunteerRepositoryImplementation } from './infra/repository/volunteer-implementation.repository';
-import { VOLUNTEER_REPOSITORY } from './repository/volunteer.repository';
-import { VOLUNTEER_SERVICE } from './services/volunteer.service';
+import { VOLUNTEER_SERVICE } from './interfaces/volunteer-service.interface';
 import { Module } from '@nestjs/common';
-import { VolunteerController } from './controller/volunteer.controller';
-import { VolunteerServiceImplmenetation } from './infra/services/volunteer-implementation.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { VolunteerSchema } from './infra/entities/mongo/volunteer.model';
+import { VolunteerSchema } from './volunteer.model';
+import { VOLUNTEER_REPOSITORY } from './interfaces/volunteer-repository.interface';
+import { VolunteerController } from './volunteer.controller';
+import { VolunteerService } from './volunteer.service';
+import { VolunteerRepository } from './volunteer.repository';
 
 @Module({
   imports: [
@@ -20,11 +20,11 @@ import { VolunteerSchema } from './infra/entities/mongo/volunteer.model';
   providers: [
     {
       provide: VOLUNTEER_SERVICE,
-      useClass: VolunteerServiceImplmenetation,
+      useClass: VolunteerService,
     },
     {
       provide: VOLUNTEER_REPOSITORY,
-      useClass: VolunteerRepositoryImplementation,
+      useClass: VolunteerRepository,
     },
   ],
 })

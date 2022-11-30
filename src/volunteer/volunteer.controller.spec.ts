@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { VOLUNTEER_SERVICE } from '../services/volunteer.service';
+import { VOLUNTEER_SERVICE } from './interfaces/volunteer-service.interface';
 import { VolunteerController } from './volunteer.controller';
 
 describe('VolunteerController', () => {

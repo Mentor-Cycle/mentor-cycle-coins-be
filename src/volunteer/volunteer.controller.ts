@@ -1,8 +1,4 @@
 import {
-  VolunteerService,
-  VOLUNTEER_SERVICE,
-} from './../services/volunteer.service';
-import {
   Controller,
   Get,
   Post,
@@ -12,14 +8,18 @@ import {
   Delete,
   Inject,
 } from '@nestjs/common';
-import { CreateVolunteerDto } from '../dto/create-volunteer.dto';
-import { UpdateVolunteerDto } from '../dto/update-volunteer.dto';
+import { CreateVolunteerDto } from './dto/create-volunteer.dto';
+import { UpdateVolunteerDto } from './dto/update-volunteer.dto';
+import {
+  VolunteerServiceInterface,
+  VOLUNTEER_SERVICE,
+} from './interfaces/volunteer-service.interface';
 
 @Controller('volunteer')
 export class VolunteerController {
   constructor(
     @Inject(VOLUNTEER_SERVICE)
-    private readonly volunteerService: VolunteerService,
+    private readonly volunteerService: VolunteerServiceInterface,
   ) {}
 
   @Post()

@@ -2,14 +2,12 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CreateVolunteerDto } from 'src/volunteer/dto/create-volunteer.dto';
 import { UpdateVolunteerDto } from 'src/volunteer/dto/update-volunteer.dto';
 import { Volunteer } from 'src/volunteer/entities/volunteer.entity';
-import {
-  VOLUNTEER_REPOSITORY,
-  VolunteerRepository,
-} from 'src/volunteer/repository/volunteer.repository';
-import { VolunteerService } from 'src/volunteer/services/volunteer.service';
+import { VOLUNTEER_REPOSITORY } from 'src/volunteer/interfaces/volunteer-repository.interface';
+import { VolunteerServiceInterface } from './interfaces/volunteer-service.interface';
+import { VolunteerRepository } from './volunteer.repository';
 
 @Injectable()
-export class VolunteerServiceImplmenetation implements VolunteerService {
+export class VolunteerService implements VolunteerServiceInterface {
   constructor(
     @Inject(VOLUNTEER_REPOSITORY)
     private readonly volunteerRepository: VolunteerRepository,

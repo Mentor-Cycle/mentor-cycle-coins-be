@@ -4,7 +4,7 @@ import { Volunteer } from '../entities/volunteer.entity';
 
 export const VOLUNTEER_SERVICE = 'VOLUNTEER_SERVICE';
 
-export interface VolunteerService {
+export interface VolunteerServiceInterface {
   create(createVolunteerDto: CreateVolunteerDto): Promise<Volunteer>;
   findAll(): Promise<Volunteer[]>;
   findOne(id: string): Promise<Volunteer>;

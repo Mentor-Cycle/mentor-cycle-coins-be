@@ -3,6 +3,6 @@ import { Volunteer } from '../entities/volunteer.entity';
 
 export const VOLUNTEER_REPOSITORY = 'VOLUNTEER_REPOSITORY';
 
-export interface VolunteerRepository {
+export interface VolunteerRepositoryInterface {
   create(createVolunteerDto: CreateVolunteerDto): Promise<Volunteer>;
 }
