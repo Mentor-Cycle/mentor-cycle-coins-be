@@ -79,6 +79,8 @@
       "!**/*.model.{js,jsx,ts,tsx}",
       "!config/*.{js,jsx,ts,tsx}",
       "!main.{js,jsx,ts,tsx}",
+      "!**/*.repository.{js,jsx,ts,tsx}",
+      "!**/*.test.{js,jsx,ts,tsx}",
       "!**/node_modules/**",
       "!dist/**"
     ],
