@@ -7,9 +7,10 @@ import {
   Param,
   Delete,
   Inject,
+  Query,
 } from '@nestjs/common';
 import { CreateVolunteerDto } from './dto/create-volunteer.dto';
-import { UpdateVolunteerDto } from './dto/update-volunteer.dto';
+import { PartialVolunteerDto } from './dto/update-volunteer.dto';
 import {
   VolunteerServiceInterface,
   VOLUNTEER_SERVICE,
@@ -28,8 +29,8 @@ export class VolunteerController {
   }
 
   @Get()
-  findAll() {
-    return this.volunteerService.findAll();
+  findAll(@Query() filters: PartialVolunteerDto) {
+    return this.volunteerService.findAll(filters);
   }
 
   @Get(':id')
@@ -40,9 +41,9 @@ export class VolunteerController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateVolunteerDto: UpdateVolunteerDto,
+    @Body() PartialVolunteerDto: PartialVolunteerDto,
   ) {
-    return this.volunteerService.update(id, updateVolunteerDto);
+    return this.volunteerService.update(id, PartialVolunteerDto);
   }
 
   @Delete(':id')
