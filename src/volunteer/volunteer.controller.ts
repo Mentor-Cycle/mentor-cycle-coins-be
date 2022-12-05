@@ -24,12 +24,12 @@ export class VolunteerController {
   ) {}
 
   @Post()
-  create(@Body() createVolunteerDto: CreateVolunteerDto) {
+  async create(@Body() createVolunteerDto: CreateVolunteerDto) {
     return this.volunteerService.create(createVolunteerDto);
   }
 
   @Get()
-  findAll(@Query() filters: PartialVolunteerDto) {
+  async findAll(@Query() filters: PartialVolunteerDto) {
     return this.volunteerService.findAll(filters);
   }
 
@@ -39,7 +39,7 @@ export class VolunteerController {
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() PartialVolunteerDto: PartialVolunteerDto,
   ) {
@@ -47,7 +47,7 @@ export class VolunteerController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.volunteerService.remove(id);
   }
 }
