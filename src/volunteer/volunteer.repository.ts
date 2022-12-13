@@ -11,11 +11,25 @@ export class VolunteerRepository implements VolunteerRepositoryInterface {
   constructor(
     @InjectModel('Volunteer') private readonly userModel: Model<Volunteer>,
   ) {}
+
   async findAll(filters: PartialVolunteerDto): Promise<Volunteer[]> {
-    return this.userModel.find(filters).exec();
+    return this.userModel.find({ ...filters, active: true }).exec();
   }
 
   async create(volunteer: CreateVolunteerDto): Promise<Volunteer> {
     return new this.userModel(volunteer).save();
+  }
+  async findOne(id: string): Promise<Volunteer> {
+    return this.userModel.findOne({ id, active: true }).exec();
+  }
+  async update(id: string, volunteer: PartialVolunteerDto): Promise<Volunteer> {
+    return this.userModel.findByIdAndUpdate(id, volunteer, { new: true });
+  }
+  async remove(id: string): Promise<Volunteer> {
+    return this.userModel.findByIdAndUpdate(
+      id,
+      { active: false },
+      { new: true },
+    );
   }
 }

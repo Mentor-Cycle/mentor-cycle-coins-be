@@ -8,7 +8,7 @@ export const VolunteerSchema = new mongoose.Schema(
     team: { type: String, required: false },
     photo: { type: String, required: false },
     mentorCoins: { type: Number, required: false },
-    active: { type: Boolean, required: false },
+    active: { type: Boolean, required: false, default: true },
   },
   {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },

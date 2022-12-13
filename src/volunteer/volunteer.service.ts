@@ -11,7 +11,7 @@ export class VolunteerService implements VolunteerServiceInterface {
     @Inject(VOLUNTEER_REPOSITORY)
     private readonly volunteerRepository: VolunteerServiceInterface,
   ) {}
-  create(createVolunteerDto: CreateVolunteerDto): Promise<Volunteer> {
+  async create(createVolunteerDto: CreateVolunteerDto): Promise<Volunteer> {
     return this.volunteerRepository.create(createVolunteerDto);
   }
 
@@ -22,16 +22,28 @@ export class VolunteerService implements VolunteerServiceInterface {
     }
     return volunteers;
   }
-  findOne(id: string): Promise<Volunteer> {
-    throw new Error('Method not implemented.');
+  async findOne(id: string): Promise<Volunteer> {
+    const volunteerExists = await this.volunteerRepository.findOne(id);
+    if (!volunteerExists) {
+      throw new NotFoundException('Volunteer not found');
+    }
+    return volunteerExists;
   }
-  update(
+  async update(
     id: string,
     PartialVolunteerDto: PartialVolunteerDto,
   ): Promise<Volunteer> {
-    throw new Error('Method not implemented.');
+    const volunteerExists = await this.volunteerRepository.findOne(id);
+    if (!volunteerExists) {
+      throw new NotFoundException('Volunteer not found');
+    }
+    return this.volunteerRepository.update(id, PartialVolunteerDto);
   }
-  remove(id: string): Promise<Volunteer> {
-    throw new Error('Method not implemented.');
+  async remove(id: string): Promise<Volunteer> {
+    const volunterExists = await this.volunteerRepository.findOne(id);
+    if (!volunterExists) {
+      throw new NotFoundException('Volunteer not found');
+    }
+    return this.volunteerRepository.remove(id);
   }
 }
